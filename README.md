@@ -65,7 +65,7 @@ Para tornar os testes mais confiáveis, execute os programas com "tudo fechado" 
 
 ## PROJECT 1 - SORTING
 Summary:
-First evaluation assignment for the CI1056 - Algorithms and Data Structures II course, part of the Computer Science program at the Federal University of Paraná.
+First evaluation project for the CI1056 - Algorithms and Data Structures II course, part of the Computer Science program at the Federal University of Paraná.
 
 ### 1. Description
 
