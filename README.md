@@ -8,8 +8,8 @@ Primeiro trabalho avaliativo para a disciplina CI1056 - Algoritmos e Estrutura d
 
 O objetivo do trabalho é implementar as versões recursivas dos seguintes algoritmos utilizando a linguagem C: Busca Sequencial, Busca Binária, Insertion Sort, Selection Sort, Merge Sort, Quick Sort e Heap Sort.
 Junto com a implementação, deve ser entregue um relatório em PDF com experimentos relatando:
-  a. Quantidade de comparações feitas entre elementos do vetor;
-  b. Tempo de execução em segundos físicos.
+- Quantidade de comparações feitas entre elementos do vetor;
+- Tempo de execução em segundos físicos.
 
 A definição dos testes a serem feitos e discutidos no relatório fica a cargo do aluno.
 
