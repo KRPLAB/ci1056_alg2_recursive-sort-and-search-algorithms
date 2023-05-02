@@ -1,7 +1,7 @@
 #ifndef ORDENACAO_H_
 #define ORDENACAO_H_
 
-#define MAX_CHAR_NOME 50
+#define MAX_CHAR_NOME 100
 
 //a função getNome deve colocar o seu nome dentro da chamada
 //seu nome pode ter no máximo MAX_CHAR_NOME - 1 caracteres
