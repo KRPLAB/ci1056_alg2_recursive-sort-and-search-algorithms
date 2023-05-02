@@ -1,16 +1,36 @@
-parametrosCompilacao=-Wall #-Wshadow
-nomePrograma=trab
+# Compilador
+CC=gcc
 
-all: $(nomePrograma)
+# Flags para compilação e vinculação
+CFLAGS=-g -Wall -Werror -Wextra -pedantic
+LDFLAGS=-lm
 
-$(nomePrograma): main.o ordenacao.o
-	gcc -o $(nomePrograma) main.o ordenacao.o $(parametrosCompilacao)
+# Nome do arquivo executável
+EXECUTABLE=trab
 
-main.o: main.c
-	gcc -c main.c $(parametrosCompilacao)
+# Arquivos fonte
+SRC_ORDENACAO=ordenacao.c
+SRC_MAIN=main.c
 
-ordenacao.o: ordenacao.h ordenacao.c
-	gcc -c ordenacao.c $(parametrosCompilacao)
+# Arquivos objeto
+OBJ_ORDENACAO=ordenacao.o
+OBJ_MAIN=main.o
 
+# Alvo default
+all: $(EXECUTABLE)
+
+# Alvo para criar arquivo executável
+$(EXECUTABLE): $(OBJ_ORDENACAO) $(OBJ_MAIN)
+	$(CC) $(LDFLAGS) $^ -o $@
+
+# Alvo para compilar libAgenda.c
+$(OBJ_ORDENACAO): $(SRC_ORDENACAO)
+	$(CC) $(CFLAGS) -c $^ -o $@
+
+# Alvo para compilar main.c
+$(OBJ_MAIN): $(SRC_MAIN)
+	$(CC) $(CFLAGS) -c $^ -o $@
+
+# Alvo para limpar os arquivos objeto e executável
 clean:
-	rm -f *.o *.gch $(nomePrograma)
+	rm -f $(OBJ_ORDENACAO) $(OBJ_MAIN) $(EXECUTABLE)
