@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include "ordenacao.h"
 
@@ -14,6 +15,7 @@ int main(){
 	char nome[MAX_CHAR_NOME];
 	int idxBusca;
 	int numComp;
+	int valor;
 	
 	int n = 1000*1000*80;
 	int *v1 = (int*)malloc(n * sizeof(int));
@@ -50,35 +52,51 @@ int main(){
 	numComp = selectionSort(v1, n);
 	end = clock();
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total selectionSort: %f", total);
+	printf("\nTempo total selectionSort: %f", total);
 	
 	//mergeSort
 	start = clock();
 	numComp = mergeSort(v3, n);
 	end = clock();
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total mergeSort: %f", total);
+	printf("\nTempo total mergeSort: %f", total);
 	
 	//quickSort
 	start = clock();
 	numComp = quickSort(v4, n);
 	end = clock();
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total quickSort: %f", total);
+	printf("\nTempo total quickSort: %f", total);
 	
 	/*numComp = heapSort(v5, n);*/
 
-	for(int i=0; i < 3; i++){
+	/*for(int i=0; i < 3; i++){
 		printf("%d ", vetor[i]);
-	}
-	idxBusca = buscaSequencial(vetor, 3, 10, &numComp);
-	idxBusca = buscaBinaria(vetor, 3, 10, &numComp);
-
-	printf("\n%d %d", idxBusca, numComp);
+	}*/
+	
+	srand(time(NULL));
+	valor = rand() % 100000000;
+	
+	//buscaSequencial
+	start = clock();
+	idxBusca = buscaSequencial(v1, n, valor, &numComp);
+	end = clock();
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("\nValor encontrado no indice (caso seja -1, não foi encontrado): %d\nNumero de comparacoes foi: %d", idxBusca, numComp);
+	
+	start = clock();
+	idxBusca = buscaBinaria(v1, n, valor, &numComp);
+	end = clock();
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("\nValor encontrado no indice (caso seja -1, não foi encontrado): %d\nNumero de comparacoes foi: %d", idxBusca, numComp);
 	printf("\n");
 
 	//É obrigatório que você libere a memória alocada dinamicamente via free
-	free(vetor);
+	free(v1);
+	free(v2);
+	free(v3);
+	free(v4);
+	free(v5);
 
 	return 0;
 }
