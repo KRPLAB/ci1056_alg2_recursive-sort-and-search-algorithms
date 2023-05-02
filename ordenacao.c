@@ -49,26 +49,23 @@ int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){
 	return bBin_aux(vetor, 0, tam-1, valor, numComparacoes);
 }
 
-void insere(int v[], int a, int b){
-    int p = buscaSequencial();
-    int j = b-1;
+void insere(int v[], int a, int b, int* numComparacoes){
+    int p = bSeq_aux(v, a, b-1, v[b], numComparacoes);
+    int i = b;
 
-    while (j >= a && v[j] > ultimo) {
-        v[j+1] = v[j];
-        j--;
+    while (i > p+1) {
+        troca(&v[i], &v[i-1]);
+        i--;
     }
-    v[j+1] = ultimo;
     return;
-
 }
 
 void insSort_aux(int vetor[], int a, int b, int* numComparacoes){
 	if (a >= b)
 		return;
 	
-	(*numComparacoes)++;
     insSort_aux(vetor, a, b-1, numComparacoes);
-    insere(vetor, a, b);
+    insere(vetor, a, b, numComparacoes);
     return;
 }
 
