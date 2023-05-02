@@ -1,6 +1,4 @@
 #include "ordenacao.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
 #include <string.h>
 
@@ -12,7 +10,7 @@ void getNome(char nome[]){
 
 //a função a seguir deve retornar o seu número de GRR
 unsigned int getGRR(){
-	return ;
+	return 20182697;
 }
 
 int bSeq_aux(int vetor[], int a, int b, int x, int* numComparacoes){
@@ -28,6 +26,7 @@ int bSeq_aux(int vetor[], int a, int b, int x, int* numComparacoes){
 }
 
 int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
+	*numComparacoes = 0;
 	return bSeq_aux(vetor, 0, tam-1, valor, numComparacoes);
 }
 
@@ -47,6 +46,7 @@ int bBin_aux(int vetor[], int a, int b, int x, int* numComparacoes){
 }
 
 int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){
+	*numComparacoes = 0;
 	return bBin_aux(vetor, 0, tam-1, valor, numComparacoes);
 }
 
@@ -74,7 +74,7 @@ void insSort_aux(int vetor[], int a, int b, int* numComparacoes){
 }
 
 int insertionSort(int vetor[], int tam){	
-	int numComparacoes;
+	int numComparacoes = 0;
 	insSort_aux(vetor, 0, tam-1, &numComparacoes);
 	return numComparacoes;
 }
@@ -90,7 +90,7 @@ void troca(int *i, int *j) {
 int minimo(int vetor[], int a, int b, int *numComparacoes){
 	int menorIndex;
 	
-	if (a == b)
+	if(a == b)
 		return a;
 	
 	(*numComparacoes)++;
@@ -103,10 +103,10 @@ int minimo(int vetor[], int a, int b, int *numComparacoes){
 }
 
 // Funcao para ordenar o vetor usando o algoritmo selection sort
-void selSort_aux(int vetor[], int a, int b, int *numComparacoes){
-    if (a >= b)
-        return;
-	
+void selSort_aux(int vetor[], int a, int b, int *numComparacoes){	
+	if(a == b)
+		return;
+		
 	troca(&vetor[a], &vetor[minimo(vetor, a, b, numComparacoes)]);
 	return selSort_aux(vetor, a + 1, b, numComparacoes);
 }
@@ -119,7 +119,7 @@ int selectionSort(int vetor[], int tam){
     return numComparacoes;
 }
 
-void intercala(int vetor[], int a, int m, int b){
+void intercala(int vetor[], int a, int m, int b, int *numComparacoes){
 	int u[b];
 	int i = a;
 	int j = m + 1;
