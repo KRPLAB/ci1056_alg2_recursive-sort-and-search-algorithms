@@ -34,8 +34,6 @@ int main(){
 	memcpy(v4, v1, n * sizeof(int));
 	memcpy(v5, v1, n * sizeof(int));
 
-	
-	
 	//Para medir o tempo, inclua time.h, e siga o exemplo:
 	clock_t start, end;
     double total;
