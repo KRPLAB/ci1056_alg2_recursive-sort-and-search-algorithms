@@ -104,7 +104,7 @@ void selSort_aux(int vetor[], int a, int b, int *numComparacoes){
 		return;
 		
 	troca(&vetor[a], &vetor[minimo(vetor, a, b, numComparacoes)]);
-	return selSort_aux(vetor, a + 1, b, numComparacoes);
+	selSort_aux(vetor, a + 1, b, numComparacoes);
 }
 
 int selectionSort(int vetor[], int tam){
