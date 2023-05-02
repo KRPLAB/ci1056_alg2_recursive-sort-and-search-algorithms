@@ -51,10 +51,10 @@ int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){
 }
 
 void insere(int v[], int a, int b){
-    int ultimo = v[b-1];
-    int j = b-2;
+    int p = buscaSequencial();
+    int j = b-1;
 
-    while (j >= 0 && v[j] > ultimo) {
+    while (j >= a && v[j] > ultimo) {
         v[j+1] = v[j];
         j--;
     }
