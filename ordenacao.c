@@ -13,6 +13,13 @@ unsigned int getGRR(){
 	return 20182697;
 }
 
+// Funcao para trocar dois elementos do vetor
+void troca(int *i, int *j) {
+	int temp = *i;
+	*i = *j;
+	*j = temp;
+}
+
 int bSeq_aux(int vetor[], int a, int b, int x, int* numComparacoes){
     if (a > b)
         return -1;
@@ -73,13 +80,6 @@ int insertionSort(int vetor[], int tam){
 	int numComparacoes = 0;
 	insSort_aux(vetor, 0, tam-1, &numComparacoes);
 	return numComparacoes;
-}
-
-// Funcao para trocar dois elementos do vetor
-void troca(int *i, int *j) {
-	int temp = *i;
-	*i = *j;
-	*j = temp;
 }
 
 // Funcao para encontrar o indice do menor elemento do vetor
