@@ -16,12 +16,11 @@ unsigned int getGRR(){
 int bSeq_aux(int vetor[], int a, int b, int x, int* numComparacoes){
     if (a > b)
         return -1;
-    if (vetor[b] == x) 
-	{
-		(*numComparacoes)++;
-		return b;
-	}
+	
 	(*numComparacoes)++;
+    if (x >= vetor[b]) 
+		return b;
+	
     return bSeq_aux(vetor, a, b - 1, x, numComparacoes);
 }
 
