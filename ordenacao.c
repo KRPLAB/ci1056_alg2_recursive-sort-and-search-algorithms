@@ -21,14 +21,14 @@ void troca(int *i, int *j) {
 }
 
 int bSeq_aux(int vetor[], int a, int b, int x, int* numComparacoes){
-    if (a > b)
-        return -1;
-	
+	if (a > b){
+        	return -1;
+    	}
 	(*numComparacoes)++;
-    if (x >= vetor[b]) 
+	if (x >= vetor[b]) 
 		return b;
 	
-    return bSeq_aux(vetor, a, b - 1, x, numComparacoes);
+	return bSeq_aux(vetor, a, b - 1, x, numComparacoes);
 }
 
 int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
@@ -37,18 +37,23 @@ int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
 }
 
 int bBin_aux(int vetor[], int a, int b, int x, int* numComparacoes){
-    if (b >= a) 
-	{
-        int m = a + (b - a) / 2;
-        if (vetor[m] == x)
-            return m;
-		
-        if (vetor[m] > x)
-            return bBin_aux(vetor, a, m-1, x, numComparacoes);
+	if (a > b)
+	       return -1;
+	int m = a + (b - a) / 2;
+
+	
+        if (vetor[m] == x){
+		(*numComparacoes)++;
+		return m;
+	}
+
+	
+	if (x < vetor[m]){
+		(*numComparacoes)++;
+		return bBin_aux(vetor, a, m-1, x, numComparacoes);
+	}
 		
         return bBin_aux(vetor, m+1, b, x, numComparacoes);
-    }
-    return -1;
 }
 
 int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){
@@ -57,23 +62,23 @@ int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){
 }
 
 void insere(int v[], int a, int b, int* numComparacoes){
-    int p = bSeq_aux(v, a, b-1, v[b], numComparacoes);
-    int i = b;
+    	int p = bSeq_aux(v, a, b-1, v[b], numComparacoes);
+    	int i = b;
 
-    while (i > p+1) {
-        troca(&v[i], &v[i-1]);
-        i--;
-    }
-    return;
+    	while (i > p+1) {
+        	troca(&v[i], &v[i-1]);
+        	i--;
+    	}
+	return;
 }
 
 void insSort_aux(int vetor[], int a, int b, int* numComparacoes){
 	if (a >= b)
 		return;
 	
-    insSort_aux(vetor, a, b-1, numComparacoes);
-    insere(vetor, a, b, numComparacoes);
-    return;
+    	insSort_aux(vetor, a, b-1, numComparacoes);
+    	insere(vetor, a, b, numComparacoes);
+    	return;
 }
 
 int insertionSort(int vetor[], int tam){	
@@ -108,11 +113,11 @@ void selSort_aux(int vetor[], int a, int b, int *numComparacoes){
 }
 
 int selectionSort(int vetor[], int tam){
-    int numComparacoes = 0;
+    	int numComparacoes = 0;
 	
-    selSort_aux(vetor, 0, tam, &numComparacoes);
+    	selSort_aux(vetor, 0, tam, &numComparacoes);
     
-    return numComparacoes;
+    	return numComparacoes;
 }
 
 void intercala(int vetor[], int a, int m, int b, int *numComparacoes){
@@ -123,7 +128,7 @@ void intercala(int vetor[], int a, int m, int b, int *numComparacoes){
 	if (a >= b)
 		return;
 	
-    for (int k = 0; k <= b-a; k++)
+    	for (int k = 0; k <= b-a; k++)
 	{
 		(*numComparacoes)++;
 		if ((j > b) || (i <= m && vetor[i] <= vetor[j]))
@@ -142,43 +147,43 @@ void intercala(int vetor[], int a, int m, int b, int *numComparacoes){
 }
 
 void mSort_aux(int vetor[], int a, int b, int *numComparacoes){
-    if (a >= b)
+	if (a >= b)
 		return;
 		
 	int m = floor((a+b)/2);
 	mSort_aux(vetor, a, m, numComparacoes);
 	mSort_aux(vetor, m+1, b, numComparacoes);
 	
-	return intercala(vetor, a, m, b, numComparacoes);
+	intercala(vetor, a, m, b, numComparacoes);
 }
 
 int mergeSort(int vetor[], int tam){
-    int numComparacoes = 0;
+	int numComparacoes = 0;
 	
-    mSort_aux(vetor, 0, tam, &numComparacoes);
+	mSort_aux(vetor, 0, tam, &numComparacoes);
     
-    return numComparacoes;
+	return numComparacoes;
 }
 
 int particiona(int vetor[], int a, int b, int *numComparacoes){
-    int x = vetor[b];
-    int i = (a - 1);
+	int x = vetor[b];
+	int i = (a - 1);
  
-    for (int j = a ; j <= b-1 ; j++)
+	for (int j = a; j <= b-1; j++)
 	{
 		(*numComparacoes)++;
-        if (vetor[j] <= x)
+		if (vetor[j] <= x)
 		{
-            i++;
-            troca(&vetor[i], &vetor[j]);
-        }
-    }
-    troca(&vetor[i + 1], &vetor[b]);
-    return (i + 1);
+            		i++;
+            		troca(&vetor[i], &vetor[j]);
+        	}
+    	}
+	troca(&vetor[i + 1], &vetor[b]);
+	return (i + 1);
 }
  
 void qSort_aux(int vetor[], int a, int b, int *numComparacoes){
-    if (a > b)
+	if (a > b)
 		return;
 		
 	int p = particiona(vetor, a, b, numComparacoes);
@@ -194,7 +199,7 @@ int quickSort(int vetor[], int tam){
 	return numComparacoes;
 }
 
-int heapSort(int vetor[], int tam){
+/*int heapSort(int vetor[], int tam){
 	vetor[0] = 99;
 	return -1;
-}
+}*/
