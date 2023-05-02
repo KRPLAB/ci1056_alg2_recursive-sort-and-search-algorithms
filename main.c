@@ -6,10 +6,15 @@
 
 void preenche(int v[], int n){
 	// Preenche o vetor com numeros aleatorios
-    srand(time(NULL));
-    for (int i = 0; i < n; i++)
-        v[i] = rand() % 100000000;
-}	
+    	srand(time(NULL));
+	for (int i = 0; i < n; i++)
+		v[i] = rand() % 100000000;
+}
+
+void imprimeVetor(int v[], int n){
+	for (int i = 0; i < n; i++)
+		printf("%d \n", v[i]);
+}
 
 int main(){
 	char nome[MAX_CHAR_NOME];
@@ -17,12 +22,12 @@ int main(){
 	int numComp;
 	int valor;
 	
-	int n = 1000*1000*80;
+	int n = 1000*100;
 	int *v1 = (int*)malloc(n * sizeof(int));
 	int *v2 = (int*)malloc(n * sizeof(int));
 	int *v3 = (int*)malloc(n * sizeof(int));
 	int *v4 = (int*)malloc(n * sizeof(int));
-	int *v5 = (int*)malloc(n * sizeof(int));
+	/*int *v5 = (int*)malloc(n * sizeof(int));*/
 
 	getNome(nome);
 	printf("Trabalho de %s\n", nome);
@@ -32,22 +37,22 @@ int main(){
 	memcpy(v2, v1, n * sizeof(int));
 	memcpy(v3, v1, n * sizeof(int));
 	memcpy(v4, v1, n * sizeof(int));
-	memcpy(v5, v1, n * sizeof(int));
-
+	/*memcpy(v5, v1, n * sizeof(int));*/
+	
 	//Para medir o tempo, inclua time.h, e siga o exemplo:
 	clock_t start, end;
-    double total;
+    	double total;
 	
 	//insertionSort
 	start = clock();
-	numComp = insertionSort(v2, n);
+	numComp = insertionSort(v1, n);
 	end = clock();
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total insertionSort: %f", total);
-
+	printf("Tempo total insertionSort: %f segundos", total);
+	
 	//selectionSort
 	start = clock();
-	numComp = selectionSort(v1, n);
+	numComp = selectionSort(v2, n);
 	end = clock();
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("\nTempo total selectionSort: %f", total);
@@ -64,16 +69,13 @@ int main(){
 	numComp = quickSort(v4, n);
 	end = clock();
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("\nTempo total quickSort: %f", total);
+	printf("\nTempo total quickSort: %f segundos", total);
 	
 	/*numComp = heapSort(v5, n);*/
-
-	/*for(int i=0; i < 3; i++){
-		printf("%d ", vetor[i]);
-	}*/
-	
+		
 	srand(time(NULL));
 	valor = rand() % 100000000;
+	printf("\nO valor a ser buscado eh: %d\n",valor);
 	
 	//buscaSequencial
 	start = clock();
@@ -82,6 +84,7 @@ int main(){
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("\nValor encontrado no indice (caso seja -1, não foi encontrado): %d\nNumero de comparacoes foi: %d", idxBusca, numComp);
 	
+	//buscaBinaria
 	start = clock();
 	idxBusca = buscaBinaria(v1, n, valor, &numComp);
 	end = clock();
@@ -94,7 +97,7 @@ int main(){
 	free(v2);
 	free(v3);
 	free(v4);
-	free(v5);
+	/*free(v5);*/
 
 	return 0;
 }
